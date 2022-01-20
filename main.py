@@ -1,5 +1,10 @@
 import random
+from datetime import datetime
+start_t = datetime.now()
+
 true = True
+
+
 def pozdrav() -> None:
     print('Hi there!')
 
@@ -55,4 +60,5 @@ def hra():
 
 
 hra() # spusti celý kód
-
+stop_t = datetime.now()
+print('Duration of your try: {}'.format(stop_t - start_t))
