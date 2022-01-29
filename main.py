@@ -16,6 +16,10 @@ def uvod() -> None:
     odd = '-' * len(pozdrav)
     print(odd)
 
+def number_is_not_numeric(cislo): #kontroluje, jestli je vstup číselný
+    if cislo.isalpha():
+        say = print("You didn't entered a digit number! Try it again")
+        return say
 def hra():
     pozdrav() #vypíše pozdrav
     uvod()  #vypíše úvodní informace
@@ -28,15 +32,18 @@ def hra():
     pocet_c = 0
     pokusy = 1
     while True:
-            cislo = str(input('Enter a number: '))
+            cislo = input('Enter a number: ')
+            used = [] #list pro použitá čísla, slouží pro ošetření unikátnosti vloženého čísla
+            if cislo.isalpha():
+                print("You didn't entered a numeric number!")
 
-            if len(str(cislo)) < 4:
+            if cislo.isdigit() and len(str(cislo)) < 4:
                 print('Number has to have lenght of 4 digits! You have less than 4.')
 
-            elif len(str(cislo)) > 4:
+            elif cislo.isdigit() and len(str(cislo)) > 4:
                 print('Number has to have lenght of 4 digits! You have more than 4.')
 
-            if cislo == num:
+            if cislo.isdigit() and cislo == num:
                 print(f"You guessed that in {pokusy} guesses.")
                 return
 
@@ -45,9 +52,15 @@ def hra():
                         if cislice == num[i]:
                             pocet += 1
 
+
                     for i, cislice in enumerate(cislo):
                         if cislice in num and cislice != num[i]:
                             pocet_c += 1
+                            used.append(cislice)
+                            if cislice in used:
+                                pocet_c -=1
+                            print("You didn't write a unique number! Try it again!")
+                            break
 
                     print(f"{pocet} bulls and {pocet_c} cows")
                     pocet = 0
@@ -55,8 +68,8 @@ def hra():
                     pokusy += 1
 
 
-            else:
-                print('Not right')
+            #else:
+                #print('Not right')
 
 
 hra() # spusti celý kód
