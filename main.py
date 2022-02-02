@@ -20,14 +20,15 @@ def number_is_not_numeric(cislo): #kontroluje, jestli je vstup číselný
     if cislo.isalpha():
         say = print("You didn't entered a digit number! Try it again")
         return say
+
 def hra():
     pozdrav() #vypíše pozdrav
     uvod()  #vypíše úvodní informace
 
-    guessed = []
-    num = str(random.choice(range(1000,10000)))
-    guessed.append(num)
-    print(num)
+    num = "0000"  #kontrola unikátnosti náhodného čísla
+    while len(set(num)) != 4:
+        num = str(random.choice(range(1000, 10000)))
+
     pocet = 0
     pocet_c = 0
     pokusy = 1
@@ -45,7 +46,7 @@ def hra():
 
             if cislo.isdigit() and cislo == num:
                 print(f"You guessed that in {pokusy} guesses.")
-                return
+
 
             elif len(cislo) == 4:
                     for i, cislice in enumerate(cislo):
