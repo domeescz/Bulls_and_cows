@@ -28,7 +28,7 @@ def hra():
     num = "0000"  #kontrola unikátnosti náhodného čísla
     while len(set(num)) != 4:
         num = str(random.choice(range(1000, 10000)))
-
+    #print(num)
     pocet = 0
     pocet_c = 0
     pokusy = 1
@@ -46,6 +46,7 @@ def hra():
 
             if cislo.isdigit() and cislo == num:
                 print(f"You guessed that in {pokusy} guesses.")
+                return
 
 
             elif len(cislo) == 4:
@@ -57,17 +58,11 @@ def hra():
                     for i, cislice in enumerate(cislo):
                         if cislice in num and cislice != num[i]:
                             pocet_c += 1
-                            used.append(cislice)
-                            if cislice in used:
-                                pocet_c -=1
-                            print("You didn't write a unique number! Try it again!")
-                            break
 
                     print(f"{pocet} bulls and {pocet_c} cows")
                     pocet = 0
                     pocet_c = 0
                     pokusy += 1
-
 
             #else:
                 #print('Not right')
