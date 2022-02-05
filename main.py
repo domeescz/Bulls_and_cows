@@ -28,7 +28,7 @@ def hra():
     num = "0000"  #kontrola unikátnosti náhodného čísla
     while len(set(num)) != 4:
         num = str(random.choice(range(1000, 10000)))
-    #print(num)
+    print(num)
     pocet = 0
     pocet_c = 0
     pokusy = 1
@@ -54,9 +54,7 @@ def hra():
                         if cislice == num[i]:
                             pocet += 1
 
-
-                    for i, cislice in enumerate(cislo):
-                        if cislice in num and cislice != num[i]:
+                        elif cislice in num and cislice != num[i]:
                             pocet_c += 1
 
                     print(f"{pocet} bulls and {pocet_c} cows")
